@@ -9,6 +9,66 @@ body {
     
 }
 
+body header {
+    box-shadow: 0 0 10px black;
+    padding: 10px;
+    width: 100%;
+    min-height: 40px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+}
+
+header nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 black;
+    z-index: 1;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    padding: 10px;
+}
+
+.dropdown:hover nav {
+    display: block;
+}
+
+nav a {
+    width: 100%;
+    display: inline-block;
+    color: black;
+}
+
+nav a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+nav a:visited {
+    color:black;
+}
+
+header nav ul li:hover {
+    background-color: #cfcaca;
+}
+
+main {
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+}
+
 form {
     width:fit-content;
     margin: auto;
@@ -32,8 +92,13 @@ form input[type="submit"] {
 
 a {
     text-decoration: none;
+    font-size: 14px;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+a:visited {
+    color: blue;
 }
