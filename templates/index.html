@@ -14,9 +14,18 @@
             <label for="password">Senha</label><br>
             <input type="password" name="password" id="password"><br>
             <input type="submit" value="Login">
-            <a href="paginas/cadastro.html">Criar conta</a><br>
+            <a href="{{url_for('cadastro')}}">Criar conta</a><br>
             <a href="paginas/redefinir-senha.html">Esqueci minha senha</a><br>
         </form>
     </main>
+    <script>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    alert("{{message}}")
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
 </body>
 </html>

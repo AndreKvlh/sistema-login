@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../estilos/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos/style.css')}}">
     <title>Cadastro</title>
 </head>
 <body>
-    <form action="login.py">
-        <h1>Cadastro</h1>
-        <label for="username">Usuário</label><br>
-        <input type="text" name="username" id="username"><br>
-        <label for="email">E-mail</label><br>
-        <input type="email" name="email" id="email"><br>
-        <label for="new_pw">Senha</label><br>
-        <input type="password" name="new_pw" id="new_pw"><br>
-        <label for="confirm_pw">Confirmar Senha</label><br>
-        <input type="password" name="confirm_pw" id="confirm_pw"><br>
-        <input type="submit" value="Cadastrar">
-        <a href="../index.html">Voltar</a>
-    </form>
+    <main>
+        <form action="{{url_for('cadastro')}}" method="POST">
+            <h1>Cadastro</h1>
+            <label for="username">Usuário</label><br>
+            <input type="text" name="username" id="username"><br>
+            <label for="name">Nome Completo</label><br>
+            <input type="text" name="name" id="name"><br>
+            <label for="email">E-mail</label><br>
+            <input type="email" name="email" id="email"><br>
+            <label for="new_pw">Senha</label><br>
+            <input type="password" name="new_pw" id="new_pw"><br>
+            <label for="confirm_pw">Confirmar Senha</label><br>
+            <input type="password" name="confirm_pw" id="confirm_pw"><br>
+            <input type="submit" value="Cadastrar">
+            <a href="{{url_for('index')}}">Voltar</a>
+        </form>
+    </main>
+    <script>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    alert("{{message}}")
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
 </body>
 </html>
