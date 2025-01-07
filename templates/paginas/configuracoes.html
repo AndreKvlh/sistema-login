@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../estilos/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos/style.css')}}">
     <title>Document</title>
 </head>
 <body>
@@ -12,32 +12,48 @@
             <p>Usuário</p>
             <nav>
                 <ul>
-                    <li><a href="configuracoes.html">Configurações</a></li>
-                    <li><a href="../index.html">Sair</a></li>
+                    <li><a href="{{url_for('home', id=session['id_usuario_logado'])}}">Home</a></li>
+                    <li><a href="{{url_for('config')}}">Configurações</a></li>
+                    <li><a href="{{url_for('logout')}}">Sair</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main>
         <h1>Informações da Conta</h1>
-        <form action="login.py">
+        <form action="{{url_for('alterar_dados')}}" method="POST">
             <label for="name">Nome Completo</label><br>
-            <input type="text" name="name" id="name"><br>
+            <input type="text" name="name" id="name" value="{{nome_completo}}"><br>
             <label for="username">Nome de Usuário</label><br>
-            <input type="text" name="username" id="username"><br>
+            <input type="text" name="username" id="username" value="{{nome_usuario}}"><br>
             <label for="email">E-mail</label><br>
-            <input type="email" name="email" id="email"><br>
-            <label for="new_pw">Senha</label><br>
+            <input type="email" name="email" id="email" value="{{email}}"><br>
+            <input type="submit" value="Salvar Alterações">
+        </form>
+        <h1>Alterar Senha</h1>
+        <form action="{{url_for('redefinir_senha')}}" method="POST">
+            <label for="current_pw">Senha Atual</label><br>
+            <input type="password" name="current_pw" id="current_pw"><br>
+            <label for="new_pw">Nova Senha</label><br>
             <input type="password" name="new_pw" id="new_pw"><br>
             <label for="confirm_pw">Confirmar Senha</label><br>
             <input type="password" name="confirm_pw" id="confirm_pw"><br>
-            <input type="submit" value="Salvar Alterações">
+            <input type="submit" value="Alterar Senha">
         </form>
         <h1>Excluir Conta</h1>
         <p>Lembre-se que a exclusão de uma conta é permanente, <br>sendo necessário fazer um novo cadastro desde o inicio</p>
-        <form action="login.py">
+        <form action="{{url_for('excluir_conta')}}">
             <input type="submit" value="Excluir Conta" id="delete">
         </form>
     </main>
+    <script>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    alert("{{message}}")
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
 </body>
 </html>

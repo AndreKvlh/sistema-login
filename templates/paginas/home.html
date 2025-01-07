@@ -12,8 +12,9 @@
             <p>Olá, {{usuario}}</p>
             <nav>
                 <ul>
-                    <li><a href="configuracoes.html">Configurações</a></li>
-                    <li><a href="../index.html">Sair</a></li>
+                    <li><a href="{{url_for('home', id=session['id_usuario_logado'])}}">Home</a></li>
+                    <li><a href="{{url_for('config')}}">Configurações</a></li>
+                    <li><a href="{{url_for('logout')}}">Sair</a></li>
                 </ul>
             </nav>
         </div>
